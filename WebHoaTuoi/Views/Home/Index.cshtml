@@ -3,254 +3,95 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .hero-section {
-        background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(192, 108, 132, 0.9)), url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200') center/cover;
-        color: white;
-        padding: 80px 40px;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 40px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-        .hero-section h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-section p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-
-    .hero-btn {
-        display: inline-block;
-        padding: 15px 40px;
-        background-color: white;
-        color: #c06c84;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: bold;
-        font-size: 18px;
-        transition: all 0.3s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            color: #c06c84;
-            text-decoration: none;
-        }
-
-    .features-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin: 40px 0;
-    }
-
-    .feature-card {
-        background-color: white;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s;
-    }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
-        }
-
-    .feature-icon {
-        font-size: 60px;
-        margin-bottom: 20px;
-    }
-
-    .feature-card h3 {
-        color: #c06c84;
-        margin-bottom: 15px;
-        font-size: 22px;
-    }
-
-    .feature-card p {
-        color: #666;
-        line-height: 1.6;
-    }
-
-    .categories-section {
-        margin: 50px 0;
-    }
-
-    .section-title {
-        text-align: center;
-        color: #c06c84;
-        font-size: 36px;
-        margin-bottom: 40px;
-        font-weight: bold;
-    }
-
-    .categories-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .category-card {
-        background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
-        color: white;
-        padding: 40px 20px;
-        border-radius: 15px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        text-decoration: none;
-        display: block;
-    }
-
-        .category-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
-            color: white;
-            text-decoration: none;
-        }
-
-    .category-icon {
-        font-size: 50px;
-        margin-bottom: 15px;
-    }
-
-    .category-card h4 {
-        margin: 0;
-        font-size: 20px;
-    }
-
-    .stats-section {
-        background-color: white;
-        padding: 40px;
-        border-radius: 15px;
-        margin: 50px 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        text-align: center;
-    }
-
-    .stat-item {
-        padding: 20px;
-    }
-
-    .stat-number {
-        font-size: 48px;
-        font-weight: bold;
-        color: #ff6b9d;
-        margin-bottom: 10px;
-    }
-
-    .stat-label {
-        color: #666;
-        font-size: 18px;
-    }
-</style>
-
-<div class="hero-section">
-    <h1>🌸 Chào Mừng Đến Với Hoa Tươi Xinh</h1>
-    <p>Nơi lưu giữ những khoảnh khắc đẹp nhất với hoa tươi</p>
-    <a href="@Url.Action("Index", "SanPham")" class="hero-btn">🛍️ Khám Phá Ngay</a>
-</div>
-
-<div class="features-section">
-    <div class="feature-card">
-        <div class="feature-icon">🌹</div>
-        <h3>Hoa Tươi 100%</h3>
-        <p>Cam kết hoa tươi mới nhập hàng ngày, đảm bảo chất lượng tốt nhất</p>
-    </div>
-
-    <div class="feature-card">
-        <div class="feature-icon">🚚</div>
-        <h3>Giao Hàng Nhanh</h3>
-        <p>Giao hàng trong 2 giờ khu vực nội thành, miễn phí từ 500.000đ</p>
-    </div>
-
-    <div class="feature-card">
-        <div class="feature-icon">💝</div>
-        <h3>Thiết Kế Độc Đáo</h3>
-        <p>Đội ngũ florist chuyên nghiệp thiết kế theo yêu cầu riêng của bạn</p>
-    </div>
-
-    <div class="feature-card">
-        <div class="feature-icon">⭐</div>
-        <h3>Giá Tốt Nhất</h3>
-        <p>Cam kết giá cả hợp lý với chất lượng sản phẩm cao cấp</p>
-    </div>
-</div>
-
-<div class="categories-section">
-    <h2 class="section-title">🌺 Danh Mục Hoa Nổi Bật</h2>
-    <div class="categories-grid">
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">🌹</div>
-            <h4>Hoa Hồng</h4>
-        </a>
-
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">🌷</div>
-            <h4>Hoa Tulip</h4>
-        </a>
-
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">🌻</div>
-            <h4>Hoa Hướng Dương</h4>
-        </a>
-
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">🌺</div>
-            <h4>Hoa Ly</h4>
-        </a>
-
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">💐</div>
-            <h4>Hoa Cưới</h4>
-        </a>
-
-        <a href="@Url.Action("Index", "SanPham")" class="category-card">
-            <div class="category-icon">🎂</div>
-            <h4>Hoa Sinh Nhật</h4>
+<!-- HERO SECTION -->
+<section class="text-center text-white rounded-4 shadow mb-5 overflow-hidden position-relative"
+         style=" background: linear-gradient(135deg, #ff6b9de6, #c06c84e6), url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200') center/cover;
+          padding: 40px 15px; ">
+    <div class="position-relative">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fa-solid fa-seedling me-2"></i>Chào Mừng Đến Với Hoa Tươi Xinh
+        </h1>
+        <p class="fs-5 mb-4">Nơi lưu giữ những khoảnh khắc đẹp nhất với hoa tươi</p>
+        <a href="@Url.Action("Index", "SanPham")"
+           class="btn btn-light btn-lg fw-semibold rounded-pill shadow-sm px-4 py-3">
+            <i class="fa-solid fa-store me-2"></i>Khám Phá Ngay
         </a>
     </div>
-</div>
+</section>
 
-<div class="stats-section">
-    <h2 class="section-title">📊 Thành Tựu Của Chúng Tôi</h2>
-    <div class="stats-grid">
-        <div class="stat-item">
-            <div class="stat-number">5000+</div>
-            <div class="stat-label">Khách Hàng Hài Lòng</div>
+<!-- FEATURES SECTION -->
+<section class="container my-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa-solid fa-spa fa-3x text-danger mb-3"></i>
+                    <h3 class="text-danger fw-bold mb-2">Hoa Tươi 100%</h3>
+                    <p class="text-muted">Cam kết hoa tươi mới nhập hàng ngày, đảm bảo chất lượng tốt nhất</p>
+                </div>
+            </div>
         </div>
-
-        <div class="stat-item">
-            <div class="stat-number">200+</div>
-            <div class="stat-label">Sản Phẩm Đa Dạng</div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa-solid fa-truck-fast fa-3x text-danger mb-3"></i>
+                    <h3 class="text-danger fw-bold mb-2">Giao Hàng Nhanh</h3>
+                    <p class="text-muted">Giao hàng trong 2 giờ khu vực nội thành, miễn phí từ 500.000đ</p>
+                </div>
+            </div>
         </div>
-
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Hỗ Trợ Khách Hàng</div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa-solid fa-gift fa-3x text-danger mb-3"></i>
+                    <h3 class="text-danger fw-bold mb-2">Thiết Kế Độc Đáo</h3>
+                    <p class="text-muted">Đội ngũ florist chuyên nghiệp thiết kế theo yêu cầu riêng của bạn</p>
+                </div>
+            </div>
         </div>
-
-        <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Cam Kết Chất Lượng</div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fa-solid fa-tags fa-3x text-danger mb-3"></i>
+                    <h3 class="text-danger fw-bold mb-2">Giá Tốt Nhất</h3>
+                    <p class="text-muted">Cam kết giá cả hợp lý với chất lượng sản phẩm cao cấp</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="container my-5">
+    <div class="bg-white rounded-4 shadow p-5">
+        <h2 class="text-center text-danger fw-bold mb-5 display-6">
+            <i class="fa-solid fa-chart-simple me-2"></i>Thành Tựu Của Chúng Tôi
+        </h2>
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <div class="p-3">
+                    <div class="fs-1 fw-bold text-danger">5000+</div>
+                    <div class="text-muted">Khách Hàng Hài Lòng</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3">
+                    <div class="fs-1 fw-bold text-danger">200+</div>
+                    <div class="text-muted">Sản Phẩm Đa Dạng</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3">
+                    <div class="fs-1 fw-bold text-danger">24/7</div>
+                    <div class="text-muted">Hỗ Trợ Khách Hàng</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3">
+                    <div class="fs-1 fw-bold text-danger">100%</div>
+                    <div class="text-muted">Cam Kết Chất Lượng</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
