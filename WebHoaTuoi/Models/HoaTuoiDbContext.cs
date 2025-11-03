@@ -17,6 +17,9 @@ namespace WebHoaTuoi.Models
         // DbSet cho các bảng
         public DbSet<LoaiSP> LoaiSPs { get; set; }
         public DbSet<SanPham> SanPhams { get; set; }
+        public DbSet<DonHang> DonHangs { get; set; }
+        public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        
 
         // Cấu hình model
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
