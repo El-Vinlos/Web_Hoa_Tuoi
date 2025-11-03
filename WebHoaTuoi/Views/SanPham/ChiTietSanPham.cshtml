@@ -3,13 +3,6 @@
     ViewBag.Title = "Chi Tiết Sản Phẩm";
 }
 
-@if (TempData["CartMessage"] != null)
-{
-    <script>
-        alert('@TempData["CartMessage"]');
-    </script>
-}
-
 <div class="container py-5">
 
     <!-- Breadcrumb -->
@@ -64,9 +57,8 @@
                 {
                     <p class="text-danger fw-semibold mb-3">✗ Hết hàng</p>
                 }
-                <form action="@Url.Action("AddToCart", "SanPham")" method="post" class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                <form action="@Url.Action("AddtoCartChitiet", "SanPham")" method="post" class="d-flex flex-wrap align-items-center gap-3 mb-4">
                     @Html.AntiForgeryToken()
-
                     <!-- Quantity Input -->
                     <div class="input-group" style="width:130px;">
                         <button type="button" class="btn btn-outline-secondary" onclick="changeQty(-1)">−</button>
@@ -92,3 +84,9 @@
         </div>
     </div>
 </div>
+@if (TempData["CartMessage"] != null)
+{
+    <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> @TempData["CartMessage"]
+    </div>
+}

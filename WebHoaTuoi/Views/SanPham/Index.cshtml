@@ -49,6 +49,12 @@
                     </div>
                 </div>
             </div>
+            @if (TempData["CartMessage"] != null)
+            {
+                <div class="alert alert-info">
+                    <i class="fa fa-info-circle"></i> @TempData["CartMessage"]
+                </div>
+            }
             
             <!-- Product Grid -->
             @if (Model != null && Model.Any())

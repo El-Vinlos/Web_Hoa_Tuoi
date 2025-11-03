@@ -64,7 +64,8 @@ namespace WebHoaTuoi.Controllers
         }
         
         [HttpPost]
-        public ActionResult AddToCart(string maSP, int soLuong = 1, string returnUrl = null)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCartChitiet(string maSP, int soLuong = 1, string returnUrl = null)
         {
             var sanPham = db.SanPhams.Find(maSP);
             if (sanPham != null && sanPham.SoLuong >= soLuong)
@@ -82,6 +83,26 @@ namespace WebHoaTuoi.Controllers
                 return Redirect(returnUrl);
 
             return RedirectToAction("ChiTietSanPham", new { id = maSP });
+        }
+        [HttpPost]
+        public ActionResult AddToCart(string maSP, int soLuong = 1, string returnUrl = null)
+        {
+            var sanPham = db.SanPhams.Find(maSP);
+            if (sanPham != null && sanPham.SoLuong >= soLuong)
+            {
+                ShoppingCart.AddToCart(sanPham, soLuong);
+                TempData["CartMessage"] = $"Đã thêm {soLuong} x {sanPham.TenSP} vào giỏ hàng!";
+            }
+            else
+            {
+                TempData["CartMessage"] = "Sản phẩm không tồn tại hoặc hết hàng!";
+            }
+
+            // Redirect back to the page that sent the request
+            if (!string.IsNullOrEmpty(returnUrl))
+                return Redirect(returnUrl);
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult TheoLoai(string id)
