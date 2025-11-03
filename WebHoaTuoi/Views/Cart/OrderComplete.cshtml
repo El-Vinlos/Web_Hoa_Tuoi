@@ -1,0 +1,56 @@
+@model WebHoaTuoi.Models.DonHang
+
+@{
+    ViewBag.Title = "Đặt Hàng Thành Công";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <i class="fa fa-check-circle text-success" style="font-size: 80px;"></i>
+                    </div>
+                    <h2 class="text-success mb-3">Đặt Hàng Thành Công!</h2>
+                    
+                    <div class="alert alert-info mt-4">
+                        <h5>Mã đơn hàng: <strong>@Model.MaDH</strong></h5>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5>Thông tin đơn hàng</h5>
+                        </div>
+                        <div class="card-body text-left">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Họ tên:</strong></td>
+                                    <td>@Model.HoTen</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Số điện thoại:</strong></td>
+                                    <td>@Model.DienThoai</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Địa chỉ:</strong></td>
+                                    <td>@Model.DiaChi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tổng tiền:</strong></td>
+                                    <td><span class="text-danger font-weight-bold">@Model.TongTien.ToString("N0") đ</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg">
+                            <i class="fa fa-home"></i> Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

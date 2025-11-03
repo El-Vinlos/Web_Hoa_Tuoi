@@ -51,6 +51,76 @@ namespace WebHoaTuoi.Controllers
             ViewBag.TotalAmount = ShoppingCart.GetTotalAmount();
             return View(cart);
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ProcessCheckout(string hoTen, string dienThoai, string diaChi, string ghiChu)
+        {
+            var cart = ShoppingCart.GetCart();
+            if (!cart.Any())
+            {
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                // Tạo đơn hàng mới
+                var donHang = new DonHang
+                {
+                    MaDH = "DH" + DateTime.Now.Ticks,
+                    NgayDat = DateTime.Now,
+                    HoTen = hoTen,
+                    DienThoai = dienThoai,
+                    DiaChi = diaChi,
+                    GhiChu = ghiChu,
+                    TongTien = ShoppingCart.GetTotalAmount(),
+                    TrangThai = "Chờ xử lý"
+                };
+
+                db.DonHangs.Add(donHang);
+
+                // Thêm chi tiết đơn hàng
+                foreach (var item in cart)
+                {
+                    var chiTiet = new ChiTietDonHang
+                    {
+                        MaDH = donHang.MaDH,
+                        MaSP = item.MaSP,
+                        SoLuong = item.SoLuong,
+                        DonGia = item.DonGia,
+                        ThanhTien = item.ThanhTien
+                    };
+                    db.ChiTietDonHangs.Add(chiTiet);
+
+                    // Cập nhật số lượng sản phẩm
+                    var sanPham = db.SanPhams.Find(item.MaSP);
+                    if (sanPham != null)
+                    {
+                        sanPham.SoLuong -= item.SoLuong;
+                    }
+                }
+
+                db.SaveChanges();
+                ShoppingCart.ClearCart();
+
+                TempData["Success"] = "Đặt hàng thành công! Mã đơn hàng: " + donHang.MaDH;
+                return RedirectToAction("OrderComplete", new { maDH = donHang.MaDH });
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
+                return RedirectToAction("Checkout");
+            }
+        }
+        public ActionResult OrderComplete(string maDH)
+        {
+            var donHang = db.DonHangs.Find(maDH);
+            if (donHang == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(donHang);
+        }
 
         // GET: Cart/GetCartCount - Lấy số lượng sản phẩm trong giỏ (cho AJAX)
         [HttpGet]
