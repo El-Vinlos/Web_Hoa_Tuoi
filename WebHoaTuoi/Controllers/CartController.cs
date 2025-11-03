@@ -57,6 +57,12 @@ namespace WebHoaTuoi.Controllers
         public ActionResult ProcessCheckout(string hoTen, string dienThoai, string diaChi, string ghiChu)
         {
             var cart = ShoppingCart.GetCart();
+            if (string.IsNullOrWhiteSpace(hoTen) || string.IsNullOrWhiteSpace(dienThoai))
+            {
+                TempData["CheckoutError"] = "Vui lòng điền đầy đủ Họ tên và Số điện thoại!";
+                ViewBag.TotalAmount = ShoppingCart.GetTotalAmount();
+                return View("Checkout", cart);
+            }
             if (!cart.Any())
             {
                 return RedirectToAction("Index");

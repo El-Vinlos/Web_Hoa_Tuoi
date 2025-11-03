@@ -56,19 +56,19 @@
                 <div class="card-body">
                     <table class="table table-sm">
                         <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.TenSP x @item.SoLuong</td>
-                                    <td class="text-right">@item.ThanhTien.ToString("N0") đ</td>
-                                </tr>
-                            }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.TenSP x @item.SoLuong</td>
+                                <td class="text-right">@item.ThanhTien.ToString("N0") đ</td>
+                            </tr>
+                        }
                         </tbody>
                         <tfoot>
-                            <tr class="table-active">
-                                <th>Tổng cộng:</th>
-                                <th class="text-right">@ViewBag.TotalAmount.ToString("N0") đ</th>
-                            </tr>
+                        <tr class="table-active">
+                            <th>Tổng cộng:</th>
+                            <th class="text-right">@ViewBag.TotalAmount.ToString("N0") đ</th>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -80,3 +80,9 @@
         </div>
     </div>
 </div>
+@if (TempData["CheckoutError"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fa fa-exclamation-triangle"></i> @TempData["CheckoutError"]
+    </div>
+}
