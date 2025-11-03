@@ -1,0 +1,82 @@
+@model List<WebHoaTuoi.Models.CartItem>
+
+@{
+    ViewBag.Title = "Thanh Toán";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">
+        <i class="fa fa-credit-card"></i> Thanh Toán
+    </h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Thông tin giao hàng</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("OrderComplete", "Cart", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="form-group">
+                            <label for="hoTen">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="hoTen" name="hoTen" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dienThoai">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="dienThoai" name="dienThoai" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diaChi">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="diaChi" name="diaChi" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ghiChu">Ghi chú</label>
+                            <textarea class="form-control" id="ghiChu" name="ghiChu" rows="2"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg btn-block">
+                            <i class="fa fa-check"></i> Đặt hàng
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Đơn hàng của bạn</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.TenSP x @item.SoLuong</td>
+                                    <td class="text-right">@item.ThanhTien.ToString("N0") đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-active">
+                                <th>Tổng cộng:</th>
+                                <th class="text-right">@ViewBag.TotalAmount.ToString("N0") đ</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <a href="@Url.Action("Index", "Cart")" class="btn btn-secondary btn-block mt-3">
+                <i class="fa fa-arrow-left"></i> Quay lại giỏ hàng
+            </a>
+        </div>
+    </div>
+</div>
